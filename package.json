@@ -14,7 +14,7 @@
     "test:functional": "echo 'TODO - FUNCTIONAL TEST'",
     "test:coverage": "NODE_ENV=test NODE_PATH=. istanbul cover _mocha -- --recursive test/spec",
     "test:coverage-e2e": "NODE_ENV=test NODE_PATH=. istanbul cover _mocha -- --timeout 15000 --recursive test/e2e",
-    "test:nsp": "nsp check",
+    "test:nsp": "npm i --package-lock-only && npm audit; EXT=$?; shx rm -f package-lock.json; exit $EXT",
     "test:a11y": "echo 'TODO: Accessibility tests'",
     "sonar-scan": "NODE_PATH=. sonar-scanner -X -Dsonar.projectKey='ccd-case-activity-api' -Dsonar.sources=app/ -Dsonar.tests=test/ -Dsonar.exclusions=node_modules/**,coverage/** -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info",
     "lint": "NODE_PATH=. eslint app.js app/**/*.js test/**/*.js",
@@ -50,7 +50,6 @@
     "jasmine-node": "^1.14.5",
     "mocha": "^3.4.2",
     "node-mocks-http": "^1.7.0",
-    "nsp": "^3.2.1",
     "shx": "^0.3.2",
     "sonar-scanner": "^3.0.3"
   }
