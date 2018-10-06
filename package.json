@@ -51,6 +51,7 @@
     "mocha": "^3.4.2",
     "node-mocks-http": "^1.7.0",
     "nsp": "^3.2.1",
+    "shx": "^0.3.2",
     "sonar-scanner": "^3.0.3"
   }
 }
