@@ -10,7 +10,7 @@ mock('../../app/user/auth-checker-user-only-filter', './stubs/idam-stub');
 
 const server = require('../../app');
 const redis = require('../../app/redis/redis-client');
-const delayed = require('../../app/util/delayed');
+const delayed = require('./utils/delayed');
 const activityAssert = require('./utils/activity-store-asserts');
 const testUtils = require('./utils/test-utils')(chai, server);
 
@@ -20,7 +20,7 @@ const SURNAME = 'smith';
 const should = chai.should(); // eslint-disable-line no-unused-vars
 
 
-const Token = JSON.stringify({ id: '242', forename: 'nayab', surname: 'gul' });
+const Token = JSON.stringify({ uid: '242', given_name: 'nayab', family_name: 'gul' });
 
 chai.use(chaiHttp);
 
@@ -60,7 +60,7 @@ describe('Activity Service - GetActivities', () => {
             done();
           });
       })
-      .catch(error => done(error));
+      .catch((error) => done(error));
   });
 
   it('should retrieve all activities for a list of cases', (done) => {
@@ -92,7 +92,7 @@ describe('Activity Service - GetActivities', () => {
             done();
           });
       })
-      .catch(error => done(error));
+      .catch((error) => done(error));
   });
 
   it('should get only the non expired activities', (done) => {
@@ -104,7 +104,7 @@ describe('Activity Service - GetActivities', () => {
       .then(() => Promise.all([
         activityAssert.allCaseViewersEquals(111, ['1242', '10']),
         activityAssert.allCaseEditorsEquals(121, ['10'])]))
-      .catch(error => done(error));
+      .catch((error) => done(error));
 
 
     const AfterActivitiesExpired = 7 * 1000;
@@ -138,7 +138,7 @@ describe('Activity Service - GetActivities', () => {
               done();
             });
         })
-        .catch(error => done(error));
+        .catch((error) => done(error));
     });
   });
 
@@ -150,7 +150,7 @@ describe('Activity Service - GetActivities', () => {
       .then(() => Promise.all([
         activityAssert.allCaseViewersEquals(111, ['11']),
         activityAssert.allCaseEditorsEquals(121, ['12'])]))
-      .catch(error => done(error));
+      .catch((error) => done(error));
 
     const USER_EXPIRED_TIME = 3 * 1000;
     delayed(USER_EXPIRED_TIME, () => {
@@ -182,7 +182,7 @@ describe('Activity Service - GetActivities', () => {
               done();
             });
         })
-        .catch(error => done(error));
+        .catch((error) => done(error));
     });
   });
 });

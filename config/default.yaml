@@ -4,18 +4,25 @@ security:
   auth_whitelist: "^caseworker-.+"
   auth_blacklist: "solicitor"
 idam:
-  base_url: http://localhost:4501
+  base_url: http://localhost:5000
 redis:
   host: localhost
   port: 6379
-  password: "testPassword"
   ssl: false
   keyPrefix: "activity:"
   activityTtlSec: 5
   userDetailsTtlSec: 2
+cache:
+  user_info_enabled: true
+  user_info_ttl: 600
+  user_info_check_period: 120
 app:
   requestTimeoutSec: 5
   storeCleanupCrontab: "* * * * *"
 appInsights:
-  instrumentationKey: "some-key"
   roleName: "ccd-case-activity-api"
+
+secrets:
+  ccd:
+    activity-redis-password: testPassword
+    AppInsightsInstrumentationKey: "some-key"
